@@ -27,8 +27,8 @@ class StudentControllerTest extends TestCase
             'email' => $faker->unique()->safeEmail
 
         ]);
-
-
+        
+        dd($response);
         $response->assertJsonStructure([
             'first_name','last_name','course','email'
         ])

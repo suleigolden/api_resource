@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Student;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Student;
+use App\Http\Resources\Student as StudentResource; 
 
 
 class StudentController extends Controller
@@ -20,6 +21,6 @@ class StudentController extends Controller
             'email' => $request->email,
         ]);
 
-        return response()->json($result, 201);
+        return response()->json(new StudentResource($result), 201);
     }
 }
