@@ -23,4 +23,23 @@ class StudentController extends Controller
 
         return response()->json(new StudentResource($result), 201);
     }
+
+
+    public function show(int $id)
+    {
+
+        $result = Student::findOrFail($id);
+
+        return response()->json(new StudentResource($result));
+    }
+
+    public function showAll()
+    {
+
+        $result = Student::all();
+
+       
+        return StudentResource::collection($result);
+    }
+
 }

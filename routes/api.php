@@ -17,6 +17,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::namespace('Student')->group(function () {
+    Route::post('store/student', 'StudentController@store');
+    Route::get('students/{id}', 'StudentController@show');
+    Route::get('students', 'StudentController@showAll');
+});
 
-Route::post('store/student', 'Student\StudentController@store');
+
 

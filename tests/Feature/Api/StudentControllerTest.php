@@ -9,6 +9,11 @@ use Faker\Factory;
 
 class StudentControllerTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->withoutExceptionHandling();
+    }
     /**
      * A basic feature test example.
      *
@@ -16,7 +21,7 @@ class StudentControllerTest extends TestCase
      */
     public function test_can_create_a_student()
     {
-        $this->withoutExceptionHandling();
+        
         
         $faker = Factory::create();
         $response = $this->json('POST','/api/store/student', [
@@ -28,13 +33,33 @@ class StudentControllerTest extends TestCase
 
         ]);
         
-        dd($response);
+        //dd($response);
         $response->assertJsonStructure([
             'first_name','last_name','course','email'
         ])
         
         ->assertStatus(201);
 
+    }
+
+    public function test_we_can_get_a_student()
+    {
+       
+        
+       
+        $response = $this->json('GET','/api/students/9');
+      
+        $response->assertStatus(200);
+
+    }
+
+    public function test_we_can_get_all_students()
+    {
+        
+       
+        $response = $this->json('GET','/api/students');
+      
+        $response->assertStatus(200);
 
     }
 }
